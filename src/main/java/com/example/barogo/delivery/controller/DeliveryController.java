@@ -34,7 +34,7 @@ public class DeliveryController {
             @ApiImplicitParam(name = "searchDate", value = "yyyy-MM-dd", required = true, dataType = "string", paramType = "query"),
     })
     @GetMapping("")
-    public ApiResponse<List<DeliveryDto>> memberDeliveries(@Authorization Member member
+    public ApiResponse<List<DeliveryDto>> memberDeliveries(@Authorization(required = true) Member member
             , @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate searchDate){
         List<DeliveryDto> result = deliveryService.memberDeliveries(member, searchDate);
         return ApiResponse.success(result, "");
